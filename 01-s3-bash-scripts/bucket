@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+source "$(dirname "$0")/config.sh"
+
+BUCKET_NAME="${1:?Usage: ./bucket <unique-bucket-name>}"
+
+aws s3api create-bucket --bucket "$BUCKET_NAME"
+aws s3api put-public-access-block --bucket "$BUCKET_NAME" --public-access-block-configuration BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true
+echo "Created private bucket: $BUCKET_NAME"
