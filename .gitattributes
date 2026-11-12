@@ -1,0 +1,2 @@
+01-s3-bash-scripts/* text eol=lf
+*.sh text eol=lf
